@@ -4,12 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.Toast
 import com.kotlin.test.adapter.RecyclerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.async
-import org.jetbrains.anko.find
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
 /**
@@ -29,7 +27,7 @@ class TestActivity :AppCompatActivity(){
     private fun init() {
 //        val recyclerView: RecyclerView = find(R.id.recycler_view)
         forestList.layoutManager = LinearLayoutManager(this)
-        async() {
+        doAsync() {
             val items = RequestForecastCommand("573").execute()
             uiThread {
                 forestList.adapter = RecyclerAdapter(items){ toast(it.date)  }

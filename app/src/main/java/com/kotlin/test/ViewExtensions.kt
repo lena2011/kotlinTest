@@ -8,6 +8,6 @@ import android.view.View
  */
   class ViewExtensions{
     val View.ctx:Context
-    get() = context
+    get() = ctx
 
 }
